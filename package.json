@@ -1,0 +1,36 @@
+{
+  "name": "consciencia-negra-machado-de-assis",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Página única sobre o Dia Nacional de Zumbi e da Consciência Negra (20 de novembro), tendo Machado de Assis como fio condutor.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "imagens": "node scripts/preparar-imagens.mjs",
+    "traco": "node scripts/gerar-traco.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource-variable/source-serif-4": "^5.3.1",
+    "lenis": "^1.3.27",
+    "motion": "^12.43.0",
+    "ogl": "^1.0.11",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@fontsource/fraunces": "^5.3.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "imagetracerjs": "^1.2.6",
+    "opentype.js": "^2.0.0",
+    "sharp": "^0.35.5",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "vite-plugin-singlefile": "^2.3.4"
+  }
+}

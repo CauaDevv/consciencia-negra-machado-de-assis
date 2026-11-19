@@ -1,0 +1,112 @@
+.horizontal-rail {
+  --rail-card-width: min(487px, calc(100vw - 48px));
+  --rail-gap: 33px;
+  --rail-track-height: 500vh;
+  --rail-foreground: var(--paper);
+  --rail-muted: var(--muted);
+  position: relative;
+}
+.horizontal-rail__heading { margin-bottom: 52px; }
+.horizontal-rail__track { position: relative; }
+.horizontal-rail__strip {
+  display: grid;
+  gap: 64px;
+  width: min(660px, calc(100% - 40px));
+  margin-inline: auto;
+}
+.horizontal-rail__item { min-width: 0; }
+.horizontal-rail__entry { height: 100%; }
+.horizontal-rail__controls { display: none; }
+
+@media (min-width: 360px) and (min-height: 520px) and (prefers-reduced-motion: no-preference) {
+  .horizontal-rail[data-pinned='true'] .horizontal-rail__track { height: var(--rail-track-height); }
+  .horizontal-rail[data-pinned='true'] .horizontal-rail__stage {
+    position: sticky;
+    top: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: max-content 44px;
+    align-content: center;
+    gap: 20px;
+    height: var(--rail-stage-height, 100svh);
+    padding-block: 112px 24px;
+  }
+  .horizontal-rail[data-pinned='true'] .horizontal-rail__viewport {
+    overflow: clip;
+    width: 100%;
+    min-height: 0;
+    min-width: 0;
+    padding-block: 6px;
+  }
+  .horizontal-rail[data-pinned='true'] .horizontal-rail__strip {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--rail-gap);
+    width: max-content;
+    margin: 0;
+    padding-inline: max(24px, calc((100vw - var(--rail-card-width)) / 2));
+    will-change: transform;
+  }
+  .horizontal-rail[data-pinned='true'] .horizontal-rail__item {
+    flex: 0 0 var(--rail-card-width);
+    width: var(--rail-card-width);
+  }
+  .horizontal-rail[data-pinned='true'] .horizontal-rail__controls {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: var(--rail-card-width);
+    margin-inline: auto;
+  }
+  .horizontal-rail__count {
+    display: flex;
+    gap: 4px;
+    font-size: 12px;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.07em;
+    color: var(--rail-muted);
+  }
+  .horizontal-rail__count > :first-child { color: var(--rail-foreground); }
+  .horizontal-rail__progress { height: 1px; flex: 1; margin-inline: 10px; background: var(--line); }
+  .horizontal-rail__progress > span { display: block; width: 100%; height: 100%; transform: scaleX(0); transform-origin: left; background: var(--gold); }
+  .horizontal-rail__controls button {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid rgb(242 232 212 / 0.4);
+    border-radius: 50%;
+    color: var(--rail-foreground);
+    transition: background 220ms, color 220ms, border-color 220ms;
+  }
+  .horizontal-rail__controls button:hover { border-color: var(--gold); background: var(--gold); color: var(--ink); }
+  .horizontal-rail__controls button[aria-disabled='true'] { opacity: 0.4; cursor: default; }
+  .horizontal-rail__controls button .icon { width: 18px; height: 18px; }
+  .horizontal-rail__controls button:first-of-type .icon { transform: rotate(180deg); }
+}
+
+@keyframes rail-card-enter {
+  from { opacity: 0; transform: translateY(80px) skewY(3deg); }
+  to { opacity: 1; transform: translateY(0) skewY(0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .horizontal-rail__item[data-entered='true'] > .horizontal-rail__entry {
+    animation: rail-card-enter 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+    transform-origin: left bottom;
+  }
+  .horizontal-rail__item:focus-within > .horizontal-rail__entry { animation: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .horizontal-rail__entry { animation: none; transform: none; }
+}
+
+/* Em touch, os cartões são um carrossel nativo: o dedo move apenas a faixa
+   horizontal e a página conserva seu scroll vertical normal. */
+@media (max-width: 767px) {
+  .horizontal-rail__viewport { width: calc(100% - 48px); margin-inline: auto; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; touch-action: pan-x pan-y; }
+  .horizontal-rail__viewport::-webkit-scrollbar { display: none; }
+  .horizontal-rail__strip { display: flex; gap: 16px; width: max-content; margin: 0; padding: 0 0 12px; }
+  .horizontal-rail__item { flex: 0 0 calc(100vw - 48px); width: calc(100vw - 48px); scroll-snap-align: start; }
+  .horizontal-rail__controls { display: none; }
+}
