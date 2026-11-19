@@ -5,9 +5,12 @@ import { BordaLuminosa } from '@/components/ui/BordaLuminosa'
 import { ElasticGallery, type ItemGaleria } from '@/components/ui/ElasticGallery'
 import { Refs } from '@/components/ui/Refs'
 import { retratos, vida, type Cartao } from '@/data/content'
-import { imagens, type ChaveImagem } from '@/data/imagens'
+import { dimensoes, imagens, type ChaveImagem } from '@/data/imagens'
 
-const itensGaleria: ItemGaleria[] = retratos.map((r) => ({ ...r, src: imagens[r.src as ChaveImagem] }))
+const itensGaleria: ItemGaleria[] = retratos.map((r) => {
+  const chave = r.src as ChaveImagem
+  return { ...r, src: imagens[chave], largura: dimensoes[chave][0], altura: dimensoes[chave][1] }
+})
 
 function CartaoVida({ c, n, total }: { c: Cartao; n: number; total: number }) {
   return (
@@ -18,7 +21,7 @@ function CartaoVida({ c, n, total }: { c: Cartao; n: number; total: number }) {
         <p>{c.texto}<Refs ids={c.ref} /></p>
         {c.imagem && (
           <figure className="cartao-vida__foto">
-            <img src={imagens[c.imagem as ChaveImagem]} alt={c.legendaImagem ?? ''} loading="lazy" decoding="async" />
+            <img src={imagens[c.imagem as ChaveImagem]} alt={c.legendaImagem ?? ''} width={dimensoes[c.imagem as ChaveImagem][0]} height={dimensoes[c.imagem as ChaveImagem][1]} loading="lazy" decoding="async" />
             <figcaption>{c.legendaImagem}</figcaption>
           </figure>
         )}

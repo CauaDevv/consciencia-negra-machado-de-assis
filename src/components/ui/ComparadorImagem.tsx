@@ -33,8 +33,8 @@ export function ComparadorImagem({
       onPointerCancel={() => setArrastando(false)}
       style={{ ['--pos' as string]: `${pos}%` }}
     >
-      <img className="comparador__img" src={direita} alt={altDireita} draggable={false} />
-      <img className="comparador__img comparador__img--topo" src={esquerda} alt={altEsquerda} draggable={false} />
+      <img className="comparador__img" src={direita} alt={altDireita} width={1100} height={901} draggable={false} />
+      <img className="comparador__img comparador__img--topo" src={esquerda} alt={altEsquerda} width={1100} height={901} draggable={false} />
       <span className="comparador__rotulo comparador__rotulo--e">{rotuloEsquerda}</span>
       <span className="comparador__rotulo comparador__rotulo--d">{rotuloDireita}</span>
       <span className="comparador__linha" aria-hidden="true"><span className="comparador__puxador">‹ ›</span></span>

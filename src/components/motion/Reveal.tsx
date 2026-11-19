@@ -5,7 +5,7 @@ import { useIntroPronta } from '@/lib/intro'
 
 export const easeOut: Easing = [0.22, 1, 0.36, 1]
 
-type Kind = 'opacity' | 'rise' | 'scale' | 'card' | 'clip' | 'left' | 'right'
+type Kind = 'rise' | 'scale' | 'card' | 'left' | 'right'
 
 /** Aparece quando entra na tela. */
 export function Reveal({
@@ -24,18 +24,14 @@ export function Reveal({
   const hidden =
     kind === 'scale' ? { opacity: 0, scale: 0.86 }
     : kind === 'card' ? { opacity: 0, y: 44, rotate: 2.5 }
-    : kind === 'clip' ? { opacity: 0, clipPath: 'inset(0 0 100% 0)' }
     : kind === 'left' ? { opacity: 0, x: -48 }
     : kind === 'right' ? { opacity: 0, x: 48 }
-    : kind === 'rise' ? { opacity: 0, y: 36 }
-    : { opacity: 0 }
+    : { opacity: 0, y: 36 }
   const shown =
     kind === 'scale' ? { opacity: 1, scale: 1 }
     : kind === 'card' ? { opacity: 1, y: 0, rotate: 0 }
-    : kind === 'clip' ? { opacity: 1, clipPath: 'inset(0 0 0% 0)' }
     : kind === 'left' || kind === 'right' ? { opacity: 1, x: 0 }
-    : kind === 'rise' ? { opacity: 1, y: 0 }
-    : { opacity: 1 }
+    : { opacity: 1, y: 0 }
   return (
     <MotionTag
       className={className}

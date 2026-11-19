@@ -71,6 +71,8 @@ export function Hero() {
               alt="Retrato de Machado de Assis, de perfil, já idoso, de cabelos e barba grisalhos e pincenê, fotografado por volta de 1904."
               width={1000}
               height={1299}
+              fetchPriority="high"
+              decoding="async"
               style={{ scale: reduced ? 1.04 : imgScale }}
             />
             <span className="arco__sombra" />

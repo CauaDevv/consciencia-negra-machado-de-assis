@@ -3,14 +3,14 @@ import { StaggerText } from '@/components/motion/StaggerText'
 import { BordaLuminosa } from '@/components/ui/BordaLuminosa'
 import { Refs } from '@/components/ui/Refs'
 import { obras, type Obra } from '@/data/content'
-import { imagens, type ChaveImagem } from '@/data/imagens'
+import { dimensoes, imagens, type ChaveImagem } from '@/data/imagens'
 
 /** Capas desenhadas em CSS quando não há imagem de domínio público da capa original. */
 function Capa({ obra }: { obra: Obra }) {
   if (obra.capa) {
     return (
       <div className="capa capa--foto">
-        <img src={imagens[obra.capa as ChaveImagem]} alt={`Capa da primeira edição de Relíquias de Casa Velha (1906), livro que traz o conto ${obra.titulo}.`} loading="lazy" decoding="async" />
+        <img src={imagens[obra.capa as ChaveImagem]} width={dimensoes[obra.capa as ChaveImagem][0]} height={dimensoes[obra.capa as ChaveImagem][1]} alt={`Capa da primeira edição de Relíquias de Casa Velha (1906), livro que traz o conto ${obra.titulo}.`} loading="lazy" decoding="async" />
       </div>
     )
   }

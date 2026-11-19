@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { useVisibilidade } from '@/hooks/useVisibilidade'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
 
-export type ItemGaleria = { id: string; titulo: string; categoria: string; src: string; alt: string; legenda?: string; posicao?: string }
+export type ItemGaleria = { id: string; titulo: string; categoria: string; src: string; alt: string; largura: number; altura: number; legenda?: string; posicao?: string }
 
 /**
  * Galeria elástica (21st.dev), adaptada do componente original:
@@ -69,7 +69,7 @@ export function ElasticGallery({ itens, autoplayMs = 6500, rotulo = 'Galeria' }:
             onKeyDown={(e) => teclas(e, i)}
           >
             <span className="eg-media" aria-hidden="true">
-              <img src={item.src} alt="" loading="lazy" decoding="async" style={{ objectPosition: item.posicao ?? '50% 30%' }} />
+              <img src={item.src} alt="" width={item.largura} height={item.altura} loading="lazy" decoding="async" style={{ objectPosition: item.posicao ?? '50% 30%' }} />
               <span className="eg-shade" />
             </span>
             {on && avancar && <span className="eg-progress" style={{ animationDuration: `${autoplayMs}ms` }} aria-hidden="true" key={`p-${ativo}`} />}

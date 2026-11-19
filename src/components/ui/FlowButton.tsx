@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes, AnchorHTMLAttributes, ReactNode, Ref } from 
 import { Icon } from './Icon'
 import { useMagnetic } from '@/components/motion/Magnetic'
 
-type Comum = { children: ReactNode; variante?: 'ouro' | 'escuro' | 'claro' }
+type Comum = { children: ReactNode; variante?: 'ouro' | 'escuro' }
 
 function Miolo({ children }: { children: ReactNode }) {
   return (
